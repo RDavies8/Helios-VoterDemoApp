@@ -18,3 +18,7 @@ dependencies {
   compile 'com.googlecode.json-simple:json-simple:1.1.1'
   compile 'com.sparkjava:spark-template-mustache:2.3'
 }
+
+task stage {
+    dependsOn build
+}
