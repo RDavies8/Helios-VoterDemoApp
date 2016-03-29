@@ -1,0 +1,20 @@
+plugins {
+  id 'java'
+  id 'eclipse'
+  id 'application'
+  id 'com.github.johnrengelman.shadow' version '1.2.3'
+}
+ 
+sourceCompatibility = 1.8
+ 
+mainClassName = 'Vote'
+ 
+repositories {
+  mavenCentral()
+}
+ 
+dependencies {
+  compile 'com.sparkjava:spark-core:2.2'
+  compile 'com.googlecode.json-simple:json-simple:1.1.1'
+  compile 'com.sparkjava:spark-template-mustache:2.3'
+}
