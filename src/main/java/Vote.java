@@ -46,11 +46,7 @@ public class Vote {
         halt(404, "Candidate " + name + " cannot be voted on.");
       }
 
-      JSONObject jsonObj = new JSONObject() {{
-        put(name, numVotes);
-      }};
-
-      return jsonObj.toJSONString();
+      return numVotes;
     });
 
     post("/voter/:name", (req, res) -> {
