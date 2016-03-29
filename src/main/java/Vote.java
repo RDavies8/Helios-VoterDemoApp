@@ -23,6 +23,7 @@ public class Vote {
   @SuppressWarnings("serial")
   public static void main(String[] args) {
 
+    port(getHerokuAssignedPort());
     Spark.staticFileLocation(STATIC_FILE_LOCATION);
 
 
@@ -71,4 +72,13 @@ public class Vote {
       return jsonObj.toJSONString();
     });
   }
+
+  static int getHerokuAssignedPort() {
+      ProcessBuilder processBuilder = new ProcessBuilder();
+      if (processBuilder.environment().get("PORT") != null) {
+          return Integer.parseInt(processBuilder.environment().get("PORT"));
+      }
+      return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
+  }
+  
 }
