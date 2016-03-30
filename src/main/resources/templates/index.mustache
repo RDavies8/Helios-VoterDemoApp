@@ -2,41 +2,44 @@
 <html lang="en">
   <head>
     <title>Voting Demo</title>
-    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.amber-blue.min.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
-
-    <link rel="stylesheet" href="/styles/custom.css">
+    <link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="/styles/custom.css">
   </head>
   <body>
-    <h1> Tapping out to Ash</h1>
+   <h2>2016 Presidential Ballot</h2>
+   <span id="directions">Tap on a candidate to vote</span>
 
-    <div class="mdl-grid">
-      <div class="mdl-cell mdl-cell--4-col">
-        <h2> Trump: {{ trump }} </h2>
-        <form method="post" action="/voter/trump">
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
-            Vote Trump!
-          </button>
-        </form>
-      </div>
-      <div class="mdl-cell mdl-cell--4-col">
-        <h2> Hillary: {{ hillary }} </h2>
-        <form method="post" action="/voter/hillary">
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
-            Vote Hillary!
-          </button>
-        </form>
-      </div>
-      <div class="mdl-cell mdl-cell--4-col">
-        <h2> Kasich: {{ kasich }} </h2>
-        <form method="post" action="/voter/kasich">
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
-            Vote Kasich!
-          </button>
-        </form>
-      </div>
+  <form method="post" action="/voter/bernie">
+    <div class="candidate" id="bernie" onClick="javascript:this.parentNode.submit()">
+      <img class="portrait" src="/assets/bernie.jpg">
+      <div class="name"> Bernie </div>
+      <div class="vote"> {{ bernie }} </div>
     </div>
+  </form>
+
+  <form method="post" action="/voter/cruz">
+    <div class="candidate" id="cruz" onClick="javascript:this.parentNode.submit()">
+      <img class="portrait" src="/assets/cruz.jpg">
+      <div class="name"> Cruz</div>
+      <div class="vote"> {{ cruz }} </div>
+    </div>
+  </form>
+
+  <form method="post" action="/voter/hillary">
+    <div class="candidate" id="hillary" onClick="javascript:this.parentNode.submit()">
+      <img class="portrait" src="/assets/hillary.jpg">
+      <div class="name"> Hillary </div>      
+      <div class="vote"> {{ hillary }} </div>
+    </div>
+  </form>
+
+  <form method="post" action="/voter/trump">
+    <div class="candidate" id="trump" onClick="javascript:this.parentNode.submit()">
+      <img class="portrait" src="/assets/trump.jpg">
+      <div class="name"> Trump </div>
+      <div class="vote"> {{ trump }} </div>
+    </div>
+  </form>
 
   </body>
 </html>
