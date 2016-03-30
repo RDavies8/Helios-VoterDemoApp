@@ -14,11 +14,7 @@ public class Vote {
   private static final String STATIC_FILE_LOCATION = "/public";
 
   @SuppressWarnings("serial")
-  private static final Map<String, Integer> candVotes = new HashMap<String, Integer>() {{
-    put("trump", 0);
-    put("hillary", 0);
-    put("kasich", 0);
-  }};
+  private static Map<String, Integer> candVotes = getInitialMap();
 
   @SuppressWarnings("serial")
   public static void main(String[] args) {
@@ -67,14 +63,30 @@ public class Vote {
 
       return jsonObj.toJSONString();
     });
+
+    post("/restart", (req, res) -> {
+
+      candVotes = getInitialMap();
+
+      return null;
+    });
   }
 
-  static int getHerokuAssignedPort() {
+  private static int getHerokuAssignedPort() {
       ProcessBuilder processBuilder = new ProcessBuilder();
       if (processBuilder.environment().get("PORT") != null) {
           return Integer.parseInt(processBuilder.environment().get("PORT"));
       }
       return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
+  }
+
+  @SuppressWarnings("serial")
+  private static Map<String, Integer> getInitialMap() {
+    return new HashMap<String, Integer>() {{
+      put("trump", 0);
+      put("hillary", 0);
+      put("kasich", 0);
+    }};
   }
   
 }
