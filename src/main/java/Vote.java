@@ -85,7 +85,8 @@ public class Vote {
     return new HashMap<String, Integer>() {{
       put("trump", 0);
       put("hillary", 0);
-      put("kasich", 0);
+      put("bernie", 0);
+      put("cruz", 0);
     }};
   }
   
