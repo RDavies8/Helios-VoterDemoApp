@@ -13,8 +13,9 @@ import org.json.simple.*;
 public class Vote {
   private static final String STATIC_FILE_LOCATION = "/public";
 
-  @SuppressWarnings("serial")
   private static Map<String, Integer> candVotes = getInitialMap();
+
+  private static Integer totalVotes = 0;
 
   @SuppressWarnings("serial")
   public static void main(String[] args) {
@@ -45,6 +46,18 @@ public class Vote {
       return numVotes;
     });
 
+    get("/percent/:name", (req, res) -> {
+      String name = req.params(":name");
+
+      Integer numVotes = candVotes.get(name);
+
+      if (numVotes == null) {
+        halt(404, "Candidate " + name + " cannot be voted on.");
+      }
+
+      return (double) numVotes / totalVotes;
+    });
+
     post("/voter/:name", (req, res) -> {
       String name = req.params(":name");
 
@@ -59,6 +72,8 @@ public class Vote {
         put(name, candVotes.get(name));
       }};
 
+      totalVotes++;
+
       res.redirect("/");
 
       return jsonObj.toJSONString();
@@ -71,6 +86,8 @@ public class Vote {
       return "Successfully Restarted Server";
     });
   }
+
+
 
   private static int getHerokuAssignedPort() {
       ProcessBuilder processBuilder = new ProcessBuilder();
