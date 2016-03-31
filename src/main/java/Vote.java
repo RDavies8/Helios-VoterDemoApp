@@ -83,6 +83,8 @@ public class Vote {
 
       candVotes = getInitialMap();
 
+      totalVotes = 0;
+
       return "Successfully Restarted Server";
     });
   }
